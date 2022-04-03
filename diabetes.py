@@ -199,8 +199,6 @@ print(classification_report(ytest, ypred))
 
   
 
-else: 
-   st.write("<font color='Aquamarine'>Note: No classification report generated.</font>", unsafe_allow_html=True)
 
 
             
