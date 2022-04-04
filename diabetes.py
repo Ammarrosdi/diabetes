@@ -69,7 +69,7 @@ print(classification_report(ytest, ypred))
 
 def prediction(BMI, Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, Age):
     diabetes_data2 = pd.DataFrame(columns = ['BMI', 'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'DiabetesPedigreeFunction', 'Age' ])
-    diabetes_data2 = diabetes_data2.append({'BMI' : BMI, 'Pregnancie' : Pregnancie, 'Glucose' : Glucose, 'BloodPressure' : BloodPressure, 'SkinThickness' : SkinThickness, 'Insulin' :Insulin, 'DiabetesPedigreeFunction' :DiabetesPedigreeFunction, 'Age' :Age, ignore_index = True) 
+    diabetes_data2 = diabetes_data2.append({'BMI' : BMI, 'Pregnancie' : Pregnancie, 'Glucose' : Glucose, 'BloodPressure' : BloodPressure, 'SkinThickness' : SkinThickness, 'Insulin' :Insulin, 'DiabetesPedigreeFunction' :DiabetesPedigreeFunction, 'Age' :Age}, ignore_index = True) 
     ypred = nb.predict(diabetes_data2)
     st.write('Your prediction for have diabetes is:')
     if ypred ==1:
