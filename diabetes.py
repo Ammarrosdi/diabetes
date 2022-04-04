@@ -1,8 +1,8 @@
 import streamlit as st 
 import numpy as np 
 import pandas as pd
-import matplotlib.pyplot as plt
 
+#import matplotlib.pyplot as plt
 from matplotlib import pyplot as plt
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
@@ -41,8 +41,9 @@ st.write(f"## You Have Selected <font color='Aquamarine'>{choice}</font> Dataset
 def get_default_dataset(name):
     data = None
     if name == 'Diabetes':
-        data = datasets.load_diabetes()
-
+        data = df = pd.read_csv (r'Path where the CSV file is stored\File name.csv')
+        print (df)
+   
     X = data.data
     y = data.target
     return X, y
@@ -106,7 +107,7 @@ X, y , X_names, cat_var= add_dataset_ui (choice)
 
 classifier_name = st.sidebar.selectbox(
     'Select classifier',
-    ('Random Forest')
+    ( 'Random Forest')
 )
 
 test_data_ratio = st.sidebar.slider('Select testing size or ratio', 
@@ -139,11 +140,11 @@ else:
 def add_parameter_ui(clf_name):
     params = dict()
     if clf_name == 'Random Forest':
+        
         max_depth = st.sidebar.slider('max_depth', 2, 15,value=5)
         params['max_depth'] = max_depth
         n_estimators = st.sidebar.slider('n_estimators', 1, 100,value=10)
         params['n_estimators'] = n_estimators
-
     return params
 
 params = add_parameter_ui(classifier_name)
@@ -151,11 +152,10 @@ params = add_parameter_ui(classifier_name)
 def get_classifier(clf_name, params):
     clf = None
     if clf_name == 'Random Forest':
-          clf = clf = RandomForestClassifier(n_estimators=params['n_estimators'], 
+       
+        clf = clf = RandomForestClassifier(n_estimators=params['n_estimators'], 
             max_depth=params['max_depth'], random_state=random_state)
     return clf
-    
-    
 
 clf = get_classifier(classifier_name, params)
 
@@ -165,7 +165,7 @@ st.write("## 3: Classification Report")
 if len(X)!=0 and len(y)!=0: 
 
 
- diabetes = pd.read_csv('diabetes.csv')
+diabetes = pd.read_csv('diabetes.csv')
 
 
 
@@ -196,8 +196,14 @@ print()
 print()
 print(classification_report(ytest, ypred))
 
+  st.write('Classifier:',classifier_name)
+  st.write('Classification report:')
+  report = classification_report(y_test, y_pred,output_dict=True)
+  df = pd.DataFrame(report).transpose()
+  st.write(df)
 
-  
+else: 
+   st.write("<font color='Aquamarine'>Note: No classification report generated.</font>", unsafe_allow_html=True)
 
 
 
