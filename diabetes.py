@@ -166,14 +166,6 @@ if len(X)!=0 and len(y)!=0:
 
 
 
-
-
-
-
-data.head()
-
-
-
 X = data.drop('Outcome',axis=1)
 
 y = data['Outcome']
