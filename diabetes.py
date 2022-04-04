@@ -16,7 +16,7 @@ This is a web app demo using python libraries such as Streamlit, Sklearn etc
 
 st.sidebar.write ("For more info, please contact:")
 
-st.sidebar.write("<a href='https://www.linkedin.com/in/mirulsraf/'>Amirul Asraf </a>", unsafe_allow_html=True)
+st.sidebar.write("<a href='https://www.linkedin.com/in/ammar-rosdi-b24b52208/'>Ammar Rosdi </a>", unsafe_allow_html=True)
 
 a = st.slider('Please insert your BMI',min_value= 15.0, max_value = 50.0, value=0.2)
 b = st.slider('Please insert your Pregnancies',min_value= 1.0, max_value = 10.0, value=1.0)
