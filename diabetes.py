@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 
+from sklearn.metrics import classification_report
+
 st.title('Diabetes Predictor')
 
 st.sidebar.write("""
@@ -30,12 +32,6 @@ heart_data = pd.read_csv(r'https://raw.githubusercontent.com/Ammarrosdi/diabetes
 import pandas as pd
 
 diabetes = pd.read_csv('diabetes.csv')
-
-
-
-
-
-
 
 
 X = diabetes.drop('Outcome',axis=1)
