@@ -11,7 +11,7 @@ from sklearn.naive_bayes import GaussianNB
 
 from sklearn.metrics import classification_report
 
-st.title('Heart Disease Predictor')
+st.title('Diabetes Predictor')
 
 st.sidebar.write("""
 This is a web app demo using python libraries such as Streamlit, Sklearn etc
@@ -22,21 +22,15 @@ st.sidebar.write ("For more info, please contact:")
 st.sidebar.write("<a href='https://www.linkedin.com/in/mirulsraf/'>Amirul Asraf </a>", unsafe_allow_html=True)
 
 a = st.slider('Please insert your BMI',min_value= 15.0, max_value = 50.0, value=0.2)
-b = st.slider('Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes] 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-c = st.slider('Do you a heavy drinker? (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week) 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-d = st.slider('Do you have stroke? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-e = st.slider('Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good? (0-30 days)',min_value= 0, max_value = 30, value=1)
-f = st.slider('Thinking about your mental health, for how many days during the past 30 days was your mental health not good? (0-30 days)',min_value= 0, max_value = 30, value=1)
-g = st.slider('Do you have serious difficulty walking or climbing stairs? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-h = st.slider('Do you have diabetes? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-i = st.slider('Do you have exercise during the past 30 days other than your regular jobs? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-j = st.slider('How you rate your general health? 1(bad) to 4(very good)',min_value= 0, max_value = 4, value=1)
-k = st.slider('How long do you sleep in hours every day?',min_value= 0, max_value = 12, value=1)
-l = st.slider('Do you have asthma? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-m = st.slider('Do you have kidney disease? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
-n = st.slider('Do you have skin cancer? 1 for yes, 0 for no',min_value= 0, max_value = 1, value=1)
+b = st.slider('Please insert your Pregnancies',min_value= 1.0, max_value = 10.0, value=1.0)
+c = st.slider('Please insert your Glucose',min_value= 0.0, max_value = 200.0, value=1.0)
+d = st.slider('Please insert your Blood Pressure',min_value= 0.0, max_value = 200.0, value=1.0)
+e = st.slider('Please insert your Skin Thickness',min_value= 0.0, max_value = 100.0, value=1.0)
+f = st.slider('Please insert your Insulin',min_value= 0.0, max_value = 1000.0, value=1.0)
+g = st.slider('Please insert your Diabetes Pedigree Function',min_value= 0.0, max_value = 2.0, value=0.001)
+h = st.slider('Please insert your Age',min_value= 1, max_value = 100, value=1)
 
-heart_data = pd.read_csv(r'https://raw.githubusercontent.com/mirulmio/HeartDisease/main/heart.csv')
+heart_data = pd.read_csv(r'https://raw.githubusercontent.com/Ammarrosdi/diabetes/main/diabetes.csv')
 
 import pandas as pd
 
@@ -71,14 +65,16 @@ print()
 print()
 print(classification_report(ytest, ypred))
 
-prediction(a,b,c,d,e,f,g,h,i,j,k,l,m,n)
 
-def prediction(bmi, smoking, alcoholdrinking, stroke, physicalhealth, mentalhealth, diffwalking, diabetic, physicalactivity, genhealth, sleeptime, asthma, kidneydisease, skincancer):
-    heart_data2 = pd.DataFrame(columns = ['BMI', 'Smoking', 'AlcoholDrinking', 'Stroke', 'PhysicalHealth', 'MentalHealth', 'DiffWalking', 'Diabetic', 'PhysicalActivity',  'GenHealth', 'SleepTime', 'Asthma', 'KidneyDisease', 'SkinCancer' ])
-    heart_data2 = heart_data2.append({'BMI' : bmi, 'Smoking' : smoking, 'AlcoholDrinking' : alcoholdrinking, 'Stroke' : stroke, 'PhysicalHealth' : physicalhealth, 'MentalHealth' :mentalhealth, 'DiffWalking' :diffwalking, 'Diabetic' :diabetic, 'PhysicalActivity' :physicalactivity,  'GenHealth' :genhealth, 'SleepTime' :sleeptime, 'Asthma' :asthma, 'KidneyDisease' :kidneydisease, 'SkinCancer' :skincancer}, ignore_index = True) 
-    ypred = nb.predict(heart_data2)
-    st.write('Your prediction for have heart disease is:')
+
+def prediction(BMI, Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, DiabetesPedigreeFunction, Age):
+    diabetes_data2 = pd.DataFrame(columns = ['BMI', 'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'DiabetesPedigreeFunction', 'Age' ])
+    diabetes_data2 = diabetes_data2.append({'BMI' : BMI, 'Pregnancie' : Pregnancie, 'Glucose' : Glucose, 'BloodPressure' : BloodPressure, 'SkinThickness' : SkinThickness, 'Insulin' :Insulin, 'DiabetesPedigreeFunction' :DiabetesPedigreeFunction, 'Age' :Age, ignore_index = True) 
+    ypred = nb.predict(diabetes_data2)
+    st.write('Your prediction for have diabetes is:')
     if ypred ==1:
       st.write('Yes')
     else:
       st.write('No')  
+    
+ prediction(a,b,c,d,e,f,g,h)
