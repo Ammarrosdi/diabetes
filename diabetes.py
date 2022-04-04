@@ -165,18 +165,18 @@ st.write("## 3: Classification Report")
 if len(X)!=0 and len(y)!=0: 
 
 
-diabetes = pd.read_csv('diabetes.csv')
 
 
 
 
-diabetes.head()
+
+data.head()
 
 
 
-X = diabetes.drop('Outcome',axis=1)
+X = data.drop('Outcome',axis=1)
 
-y = diabetes['Outcome']
+y = data['Outcome']
 
 from sklearn.model_selection import train_test_split
 Xtrain, Xtest, ytrain, ytest = train_test_split(X, y,random_state=1234,test_size=0.2)
