@@ -2,14 +2,9 @@ import streamlit as st
 import numpy as np 
 import pandas as pd
 
-#import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
-
-from sklearn.naive_bayes import GaussianNB
-
-from sklearn.metrics import classification_report
 
 st.title('Diabetes Predictor')
 
@@ -77,4 +72,4 @@ def prediction(BMI, Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin,
     else:
       st.write('No')  
     
- prediction(a,b,c,d,e,f,g,h)
+prediction(a,b,c,d,e,f,g,h)
